@@ -20,11 +20,17 @@ public class BitManipulation {
     return n | BitMask ;
     }
 
-    public static int ClearIthBit(int n , int i){
+    public static int ClearIBit(int n , int i){
         int BitMask = ~(1<<i);
         return n & BitMask ;
     }
-
+    
+    public static int clearIBitsInRange(int n , int i , int j){
+        int a = ((~0)<<(j+1));
+        int b = (1<<i)-1;
+        int bitMask = a|b;
+        return n & bitMask;
+    }
     public static void main(String[] args){
-    System.out.println(ClearIthBit(10 , 1)); }
+    System.out.println(clearIBitsInRange(10 , 2 , 4)); }
 }
