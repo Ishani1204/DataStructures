@@ -86,7 +86,7 @@ public static int power(int x , int n){
   return x*power(x , n-1);
 }
 //Optimized code for this power function
-public static int optimizedPower(int a , int n){
+public static int optimizedPower(int a , int n){ // here TC = O(n) only
     if(n==0){
         return 1 ;
     }
@@ -97,8 +97,38 @@ public static int optimizedPower(int a , int n){
     }
     return halfPowerSq;
 }
+//more optimized to O(log n) time complexity 
+// we save the value of recusive function in a variable 
+//instead of calling it again.
+public static int optimizedPowermore(int a , int n){ 
+    if(n==0){
+        return 1 ;
+    }
+    int halfPower = optimizedPowermore(a, n/2);
+    int halfPowerSq = halfPower * halfPower;
+    //n is odd
+    if(n % 2 != 0){
+        halfPowerSq = a * halfPowerSq;
+    }
+    return halfPowerSq;
+}
+//Tiling Problem
+public static int tilingProblem(int n){
+    //base case
+    if(n==0 || n==1){
+        return 1;
+    }
+    //kaam
+    //vertical choice
+    int fnm1 = tilingProblem(n-1);
 
+    //horizontal choice
+    int fnm2 = tilingProblem(n-2);
+
+    int totWays = fnm1 + fnm2 ;
+    return totWays;
+} 
     public static void main(String args[]){
-        System.out.println(optimizedPower(2,4));
+        System.out.println(tilingProblem(4));
     }
 }
