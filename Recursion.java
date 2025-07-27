@@ -128,7 +128,64 @@ public static int tilingProblem(int n){
     int totWays = fnm1 + fnm2 ;
     return totWays;
 } 
+//Duplicate in strings
+public static void removeDuplicates(String str , int idx , StringBuilder newStr , boolean map[]){
+    //base case
+    if(idx == str.length()-1){
+        System.out.println(newStr);
+        return;
+    }
+
+    //kaam
+    char currChar = str.charAt(idx);
+    if(map[currChar-'a']== true){
+        //duplicate
+        removeDuplicates(str, idx+1, newStr, map);
+    }else {
+        map[currChar - 'a'] = true;
+        removeDuplicates(str, idx+1, newStr.append(currChar), map);
+    }
+}
+//Friends Pairs
+public static int friendsPairing(int n){
+    //Base Case
+    if(n==1 || n==2){
+        return n;
+    }
+    //choice
+    //single
+    int fnm1 = friendsPairing(n-1);
+
+    //pair
+    int fnm2 = friendsPairing(n-2);
+    int pairWays = (n-1)* fnm2 ;
+
+    //totways
+    int totways = fnm1 + pairWays;
+    return totways;
+}
+//binary strings
+public static void PrintBinStrings(int n , int lastPlace , String str){
+     //Base case
+     if(n==0){
+        System.out.println(str);
+        return ; 
+    }
+
+    //kaam
+    //if (lastPlace==0) {
+        //sit 0 on chair n
+       // PrintBinStrings(n-1 , 0, str.append("0"));
+        //PrintBinStrings(n-1 , 0, str.append("1"));
+    //} else {
+       // PrintBinStrings(n-1 , 0, str.append("0"));
+    //}//better way to write
+    PrintBinStrings(n-1 , 0 , str+"0");
+    if(lastPlace==0){
+        PrintBinStrings(n-1 , 1, str+"1");
+    }
+}
     public static void main(String args[]){
-        System.out.println(tilingProblem(4));
+       PrintBinStrings(3, 0, "");
     }
 }
