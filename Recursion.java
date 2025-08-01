@@ -171,9 +171,8 @@ public static void PrintBinStrings(int n , int lastPlace , String str){
         System.out.println(str);
         return ; 
     }
-
-    //kaam
-    //if (lastPlace==0) {
+     //kaam
+     //if (lastPlace==0) {
         //sit 0 on chair n
        // PrintBinStrings(n-1 , 0, str.append("0"));
         //PrintBinStrings(n-1 , 0, str.append("1"));
