@@ -87,10 +87,48 @@ public static int partition(int arr[] , int si , int ei){
 }
 
 
+//Searching in Sorted and rotated array 
+public static int search(int arr[] , int tar , int si , int ei){
+//base case
+ if(si>ei){
+    return -1;
+ }
+//kaam
+ int mid = si + (ei-si)/2;
+//case FOUND
+ if(arr[mid] == tar){
+    return mid;
+ }
+ //mid on L1
+ if(arr[si] <= arr[mid]){
+  //case a : left
+  if(arr[si] <= tar && tar <= arr[ei]){
+    return search(arr, tar, si, mid-1);
+  } else {
+    // case b : mid ka right
+ return search(arr , tar, mid+1, ei);
+  }
+ }
+ //mid on L2
+ else{
+ // case c: right
+ if(arr[mid] <= tar && tar <=arr[ei]){
+    return search(arr, tar, mid+1, ei);
+ } else{
+// case d : mid ka left 
+return search(arr, tar, si, mid-1); 
+ }
+
+}
+
+}
+
+
 public static void main(String args[]){
-    int arr[] = {6 , 3 , 9 , 5 , 2 , 8};
-    quickSort(arr, 0, arr.length-1);
-    printArr(arr);
+    int arr[] = {4 , 5 , 6 , 7 , 0 , 1 , 2};
+    int target = 0; //output index -> 4
+    int tarIndx =search(arr, target, 0, arr.length-1);
+    System.out.println(tarIndx);
 }
 
 }
