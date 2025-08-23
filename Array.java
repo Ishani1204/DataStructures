@@ -4,7 +4,7 @@ public class Array {
     public static void update(int marks[]){
         //Now this loop is very important because here we are traversing the array
        //Yahan hum loop chala rhe h from 0 index till the length of array like
-       //uppose array is of size of 3 then loop will work from index 0 to 2 
+       //suppose array is of size of 3 then loop will work from index 0 to 2 
      for(int i=0;i<marks.length;i++){
         marks[i]=marks[i]+1;} }
 
@@ -139,8 +139,8 @@ public class Array {
       
     public static void main(String args[]){
         Scanner sc = new Scanner(System.in);
-        int numbers[]={-1,-2,-6,-9,-3};
-        modifiedkadanes(numbers);
+        int numbers[]={1,-2,6,-1,3};
+        maxSubarraySum1(numbers);
     } } 
     
 
