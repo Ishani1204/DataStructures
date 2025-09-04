@@ -126,7 +126,8 @@ public static void printSudoku(int sudoku[][]){
     public static void nQueens(char board[][] , int row){
         // base case
         if(row == board.length){
-            printBoard(board);
+            //printBoard(board);
+            count++;
             return;
         }
         // try placing queen in each column of current row
@@ -163,7 +164,7 @@ public static void printSudoku(int sudoku[][]){
         }
         return true;
     }
-
+    
     // print board in box format
     public static void printBoard(char board[][]){
         System.out.println("Solution:");
@@ -175,10 +176,13 @@ public static void printSudoku(int sudoku[][]){
         }
         System.out.println("-------------------");
     }
+    //to print the total number of solutions
+    static int count = 0; //We used static kyunki recurrence call by value hota h to har baar stack call main value add hoti jaayegi
+                          //isliye we created a static variable
 
     public static void main(String args[]){
         System.out.println("------Chess Board Solutions------");
-        int n = 4;
+        int n = 5;
         char board[][] = new char[n][n];
         // initialize board
         for(int i=0; i<n ; i++){
@@ -187,5 +191,6 @@ public static void printSudoku(int sudoku[][]){
             }
         }
         nQueens(board, 0);
+        System.out.println("Total number of ways are : " + count);
     }
 }
