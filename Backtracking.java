@@ -179,18 +179,23 @@ public static void printSudoku(int sudoku[][]){
     //to print the total number of solutions
     static int count = 0; //We used static kyunki recurrence call by value hota h to har baar stack call main value add hoti jaayegi
                           //isliye we created a static variable
+    
 
+    //number of ways to reach n-1 , m-1 in a grid
+    public static int gridWays(int i , int j , int n , int m){
+    //base case
+    if(i==n-1 && j==m-1 ) { //condition for last cell jab hum last cell par hi khade h
+        return 1;
+    } else if(i==m || j==n){ //boundary condition ki hum wahi khade h
+       return 0;
+    }
+        int w1 = gridWays(i+1, j, n, m);
+        int w2 = gridWays(i, j+1, n, m);
+
+        return w1+w2;
+    }                 
     public static void main(String args[]){
-        System.out.println("------Chess Board Solutions------");
-        int n = 5;
-        char board[][] = new char[n][n];
-        // initialize board
-        for(int i=0; i<n ; i++){
-            for(int j=0 ; j<n ; j++){
-                board[i][j] = 'x' ;
-            }
-        }
-        nQueens(board, 0);
-        System.out.println("Total number of ways are : " + count);
+        int n = 3 , m = 3;
+        System.out.println(gridWays(0, 0, n, m));
     }
 }
