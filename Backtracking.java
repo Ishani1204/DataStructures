@@ -195,7 +195,19 @@ public static void printSudoku(int sudoku[][]){
         return w1+w2;
     }                 
     public static void main(String args[]){
-        int n = 3 , m = 3;
-        System.out.println(gridWays(0, 0, n, m));
+
+         System.out.println("------Chess Board Solutions------");
+        int n = 5;
+        char board[][] = new char[n][n];
+        // initialize board
+        for(int i=0; i<n ; i++){
+            for(int j=0 ; j<n ; j++){
+                board[i][j] = 'x' ;
+            }
+        }
+        nQueens(board, 0);
+        System.out.println("Total number of ways are : " + count);
+        int a = 3 , b = 3;
+        System.out.println(gridWays(0, 0, a, b));
     }
 }
