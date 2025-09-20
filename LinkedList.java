@@ -1,3 +1,4 @@
+import java.util.LinkedList;
 public class LinkedList {
     //initialisation of the class node
     public static class Node{
@@ -232,6 +233,52 @@ public class LinkedList {
         return true;
 
     }
+
+    //detect loop or cycle in linked list -> Flloyd's Cycle Finding Algo
+    public boolean isCycle(){
+        Node slow = head;
+        Node fast = head;
+
+        while(fast != null && fast.next != null) // normal ll w/t cycle wala
+        {
+            slow = slow.next; //+1 jump
+            fast = fast.next.next; //+2 jump
+            if(slow == fast){
+                return true; //cycle
+            }
+        }
+        return false;
+    }
+
+    //remove cycle
+    public static void removeCycle(){
+        //detect cycle
+        Node slow = head;
+        Node fast = head;
+        boolean cycle = false ;
+        while(fast != null && fast.next != null) // normal ll w/t cycle wala
+        {
+            slow = slow.next; //+1 jump
+            fast = fast.next.next; //+2 jump
+            if(slow == fast){
+           cycle = true;
+           break;
+            }
+        }
+    if(cycle == false){
+        return;
+    }
+        //find meeting point
+        slow = head;
+        Node prev = null;
+        while(slow != fast) {
+          prev = fast;
+          slow = slow.next;
+          fast = fast.next;
+        }
+        //remove cycle -> last.next = null
+          prev.next = null;
+    }
     public static void main(String[] args) {
         LinkedList ll = new LinkedList();
         ll.addFirst(2);
@@ -253,5 +300,11 @@ public class LinkedList {
        ll.deleteNthFromEnd(3);
        ll.print();
        System.out.println(ll.checkPalindrome());
+
+       // using linked list framewroks
+       //LinkedList<Integer> ll = new LinkedList<>();
+       //to add ll.addFirst(); ll.addLast();
+       //to remove ll.removeFirst(); ll.removeLast;
+       //print syso(ll)
     }
 }
