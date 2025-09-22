@@ -183,7 +183,7 @@ public class StackA {
     for(int i =0 ; i<span.length;i++){
         System.out.println(span[i]+ "");
          } */
-
+    //next greater element from right
     int arr[] = {6,8,0,1,3};
     Stack<Integer> s = new Stack<>();
     int nxtGreater[] = new int[arr.length];
@@ -207,6 +207,18 @@ public class StackA {
         System.out.print(nxtGreater[i] + " ");
         }
         System.out.println(); 
+
+    //next greater element from left
+    //condition of loop changes to for(int i=n; i<=0 ;i++)
+
+    //next smaller element from right side
+    //condition changes to while(!s.isEmpty() && arr[s.peek()] >= arr[i])
+
+    //next smaller element from left side
+    /*condition of loop changes to for(int i=n; i<=0 ;i++)
+      condition changes to while(!s.isEmpty() && arr[s.peek()] >= arr[i])
+   */
     }
+
 }
 
