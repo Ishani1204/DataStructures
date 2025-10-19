@@ -58,8 +58,10 @@ public class StackB {
         }
         return false;
     }
-    
-    public static void maxArea(int arr[]){
+
+//Maximum Area In Histogram
+    public static void maxArea(int arr[]) //// time Complexity - O(n)
+{ 
     int maxArea = 0 ;
     int nsr[] = new int[arr.length];
     int nsl[] = new int[arr.length];    
@@ -107,9 +109,6 @@ public class StackB {
     }
     System.out.println("Max Area is " + maxArea);
 }
-
-
-
     public static void main(String args[]){
         int arr[] ={2, 1, 5, 6, 2, 3}; //heights in histogram
         maxArea(arr);
