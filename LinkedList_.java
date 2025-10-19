@@ -1,5 +1,5 @@
 //import java.util.LinkedList;
-public class LinkedList {
+public class LinkedList_ {
     //initialisation of the class node
     public static class Node{
         int data;
@@ -374,7 +374,7 @@ public class LinkedList {
        }
     }
     public static void main(String[] args) {
-        LinkedList ll = new LinkedList();
+        LinkedList_ ll = new LinkedList_();
         ll.addFirst(2);
         ll.addFirst(1); 
         ll.addLast(4);
