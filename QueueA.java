@@ -1,5 +1,6 @@
 public class QueueA {
-   //Queue implemented using Linked List
+
+//Queue implemented using Linked List
    static class Node{
     int data;
     Node next;
@@ -9,14 +10,14 @@ public class QueueA {
         this.next = null;
     }
    }
-   static class Queue{
+   static class Queue1{
     static Node head = null ;
     static Node tail = null ;
     public static boolean isEmpty(){
         return head == null && tail == null;
     }
 
-    public static void add(int data){
+    public static void add_ll(int data){
         Node newNode = new Node(data);
         if(head == null){
             head = tail = newNode;
@@ -26,7 +27,7 @@ public class QueueA {
         tail = newNode;
     }
 
-    public static int remove(){
+    public static int remove_ll(){
         if(isEmpty()){
             System.out.println("empty queue");
             return-1;
@@ -41,7 +42,7 @@ public class QueueA {
         return front;
     }
 
-    public static int peek(){
+    public static int peek_ll(){
          if(isEmpty()){
              System.out.println("empty queue");
              return -1;
@@ -51,124 +52,124 @@ public class QueueA {
 }
 
 
-    //Queue and circular queue implemented using Array
-//     static class Queue{
-//         static int arr[];
-//         static int size;
-//         static int rear;
-//         static int front;
+//Queue and circular queue implemented using Array
+    static class Queue{
+        static int arr[];
+        static int size;
+        static int rear;
+        static int front;
 
 
-//         Queue(int n){
-//             arr = new int[n];
-//             size = n;
-//             rear = -1;
-//             front = -1;
-//         }
+        Queue(int n){
+            arr = new int[n];
+            size = n;
+            rear = -1;
+            front = -1;
+        }
 
-//     public static boolean isEmpty(){
-//         return rear == -1 && front == -1;
-//     }    
+    public static boolean isEmpty(){
+        return rear == -1 && front == -1;
+    }    
 
 
-//     //check full
-//     public static boolean isFull(){
-//         return (rear+1) % size == front;
-//     }
+    //check full
+    public static boolean isFull(){
+        return (rear+1) % size == front;
+    }
     
-//     //add in circular queue
-//     public static void addIncircularQueue(int data) //O(1)
-//    {
-//         if(isFull()){
-//             System.out.println("Queue is full");
-//             return;
-//         }
-//         //add first element
-//         if(front == -1){
-//             front = 0;
-//         }
-//         rear = rear + 1 % size;
-//         arr[rear] = data;
-//     }
+    //add in circular queue
+    public static void addIncircularQueue(int data) //O(1)
+   {
+        if(isFull()){
+            System.out.println("Queue is full");
+            return;
+        }
+        //add first element
+        if(front == -1){
+            front = 0;
+        }
+        rear = rear + 1 % size;
+        arr[rear] = data;
+    }
 
-//     //remove in circular queue
-//     public static int removeIncircularQueue() //O(n)
-//    {
-//     if(isEmpty()){
-//         System.out.println("Empty is the queue");
-//         return -1;
-//     }
+    //remove in circular queue
+    public static int removeIncircularQueue() //O(n)
+   {
+    if(isEmpty()){
+        System.out.println("Empty is the queue");
+        return -1;
+    }
 
-//     int result  =  arr[front];
-//     front = (front + 1)% size ;
-//     //last element delete
-//     if(rear == front){
-//         rear = front = -1;
-//     } else{
-//         front = (front + 1) % size;
-//     }
-//     return result;
+    int result  =  arr[front];
+    front = (front + 1)% size ;
+    //last element delete
+    if(rear == front){
+        rear = front = -1;
+    } else{
+        front = (front + 1) % size;
+    }
+    return result;
 
-//         }
+        }
 
-//     //peek in circular queue
-//     public static int peekIncircularQueue(){
-//         if(isEmpty()){
-//             System.out.println("empty queue");
-//             return -1;
-//         }
+    //peek in circular queue
+    public static int peekIncircularQueue(){
+        if(isEmpty()){
+            System.out.println("empty queue");
+            return -1;
+        }
 
-//         return arr[front];
-//         }
+        return arr[front];
+        }
      
-//    //add
-//    public static void add(int data) //O(1)
-//    {
-//         if(rear == size-1){
-//             System.out.println("Queue is full");
-//             return;
-//         }
-//         rear = rear + 1;
-//         arr[rear] = data;
-//     }
+   //add
+   public static void add(int data) //O(1)
+   {
+        if(rear == size-1){
+            System.out.println("Queue is full");
+            return;
+        }
+        rear = rear + 1;
+        arr[rear] = data;
+    }
 
-//    //remove
-//    public static int remove() //O(n)
-//    {
-//     if(isEmpty()){
-//         System.out.println("Empty is the queue");
-//         return -1;
-//     }
+   //remove
+   public static int remove() //O(n)
+   {
+    if(isEmpty()){
+        System.out.println("Empty is the queue");
+        return -1;
+    }
 
-//     int front = arr[0];
-//     for(int i=0; i<rear; i++){
-//         arr[i]= arr[i+1];
-//     }
-//     rear = rear -1 ;
-//     return front;
+    int front = arr[0];
+    for(int i=0; i<rear; i++){
+        arr[i]= arr[i+1];
+    }
+    rear = rear -1 ;
+    return front;
 
-//         }
+        }
     
-//     //peek
-//     public static int peek(){
-//         if(isEmpty()){
-//             System.out.println("empty queue");
-//             return -1;
-//         }
+    //peek
+    public static int peek(){
+        if(isEmpty()){
+            System.out.println("empty queue");
+            return -1;
+        }
 
-//         return arr[0];
-//         }
-//     }
+        return arr[0];
+        }
+    }
 
     public static void main(String args[]){
-        Queue q = new Queue();
-        q.add(1);
-        q.add(2);
-        q.add(3);
+        Queue1 q = new Queue1();
+        q.add_ll(1);
+        q.add_ll(2);
+        q.add_ll(3);
 
         while(!q.isEmpty()){
-            System.out.println(q.peek());
-            q.remove();
+            System.out.println(q.peek_ll());
+            q.remove_ll();
         }
 
     }
