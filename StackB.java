@@ -32,6 +32,7 @@ public class StackB {
         return false;
     }
 }
+
  //Duplicate paranthesis  
     public static boolean isDuplicate(String str) // time Complexity - O(n)
     {
