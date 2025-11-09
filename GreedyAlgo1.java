@@ -34,6 +34,8 @@ public class GreedyAlgo1{
             System.out.print("A"+ans.get(i)+" ");
         }    
         System.out.println();
+
+        
 // //CASE 1 : end time basis sorted - O(n)
 //         int maxAct = 0 ;
 //         ArrayList<Integer> ans = new ArrayList<>(); 
