@@ -231,14 +231,157 @@ public class Trees {
         }
         System.out.println();
     }
+
+    //kth level - O(n)
+    public static void KLevel(Node root, int level, int k){
+        if(root == null){
+            return;
+        }
+        if(level == k){
+            System.out.print(root.data + " ");
+            return;
+        }
+        KLevel(root.left, level+1, k);
+        KLevel(root.right, level+1, k);
+    }
+
+    //Least Common Ancestor = approach 1 : O(n)
+    public static boolean getPath(Node root, int n, ArrayList<Node> path){
+        if(root == null){
+            return false;
+        }
+        path.add(root);
+        if(root.data == n){
+            return true;
+        }
+
+        boolean foundleft = getPath(root.left, n, path);
+        boolean foundright = getPath(root.right, n, path);
+
+        if(foundleft || foundright){
+            return true;
+        }
+
+        path.remove(path.size() - 1);
+        return false;
+    }
+    public static Node lca(Node root, int n1, int n2){
+        ArrayList<Node> path1 = new ArrayList<>();
+        ArrayList<Node> path2 = new ArrayList<>();
+
+        getPath(root, n1, path1);
+        getPath(root, n2, path2);
+        //least common ancestor
+        int i=0;
+        for(; i<path1.size() && i<path2.size(); i++){
+            if(path1.get(i) != path2.get(i)){
+                break;
+            }
+        }
+        //last equal node -> i-1th
+        Node lca = path1.get(i-1);
+        return lca;
+    }
+
+    //least common ancestor : approach 2
+    public static Node lca2(Node root, int n1, int n2){
+        if(root == null){
+            return null;
+        }
+        if(root.data == n1 || root.data == n2){
+            return root;
+        }
+
+        Node leftlca = lca2(root.left, n1, n2);
+        Node rightlca = lca2(root.right, n1, n2);
+
+        //leftlca = val rightlca = null
+        if(rightlca == null){
+            return leftlca;
+        }
+        if(leftlca == null){
+            return rightlca;
+        }
+
+        return root;
+    }
+
+
+    //minimum distance between two nodes = O(n)
+    public static int lcaDist(Node root, int n){
+        if(root == null){
+            return -1;
+        }
+        if(root.data == n){
+            return 0;
+        }
+
+        int leftDist = lcaDist(root.left, n);
+        int rightDist = lcaDist(root.right, n);
+
+        if(leftDist == -1 && rightDist == -1){
+            return -1;
+        } else if(leftDist == -1){
+            return rightDist+1;
+        } else {
+            return leftDist+1;
+        }
+    }
+    public static int minDist(Node root, int n1, int n2){
+        Node lca = lca2(root, n1, n2);
+        int dist1 = lcaDist(root, n1);
+        int dist2 = lcaDist(root, n2);
+
+        return dist1 + dist2;
+    }
+
+
+    //Kth ancestor of the node
+    public static int KthAncestor(Node root, int n, int k){
+        if(root == null){
+            return -1;
+        }
+        if(root.data == n){
+            return 0;
+        }
+
+        int leftDist = KthAncestor(root.left, n, k);
+        int rightDist = KthAncestor(root.right, n, k);
+
+        if(leftDist == -1 && rightDist == -1){
+            return -1;
+        }
+
+        int max = Math.max(leftDist, rightDist);
+        if(max+1 == k){
+            System.out.println(root.data);
+        }
+        return max+1;
+    }
+
+
+    //Transfrom to Sum Tree
+    public static int Transfrom(Node root){
+        if(root == null){
+            return 0;
+        }
+        int leftChild = Transfrom(root.left);
+        int rightChild = Transfrom(root.right);
+        int data = root.data;
+
+        int newLeft = root.left == null ? 0 : root.left.data;
+        int newRight = root.right == null ? 0 : root.right.data;
+        root.data = newLeft + leftChild + newRight + rightChild;
+        return data;
+    } 
    public static void main(String args[]){
    int nodes[] = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1,};
 /*     
-    *            1
-               /   \
-              2     3
-            /  \     \
-           4    5     6
+    *     1
+        /   \
+       2     3
+      /  \     \
+     4    5     6
 */
    BinaryTree tree = new BinaryTree();
    Node root = tree.buildTree(nodes);
@@ -250,15 +393,39 @@ public class Trees {
    System.out.println(count(root));
    System.out.println(diameter2(root).diam);
 
-// /*                 2
-//                   / \
-//                  4   5
-// */
+ /*       2
+         / \
+        4   5
+ */
 
    Node subRoot = new Node(2);
    subRoot.left = new Node(4);
    subRoot.right = new Node(5);
    System.out.println(isSubtree(root, subRoot));
    Topview(root);
+
+/*        1
+         / \
+        2   3
+       / \ / \
+      4  5 6  7
+     
+*/
+    Node root1 = new Node(1);
+    root1.left = new Node(2);
+    root1.right = new Node(3);
+    root1.left.left = new Node(4);
+    root1.left.right = new Node(5);
+    root1.right.left = new Node(6);
+    root1.right.right = new Node(7);
+
+    int k =2;
+    KLevel(root1, 1, k);
+
+    int n1 = 4, n2 = 5;
+    System.out.println(lca(root1, n1, n2).data);
+    System.out.println(minDist(root1, n1, n2));
+    System.out.println(KthAncestor(root1, n2, k));
+    Transfrom(root1);
    } 
 }
