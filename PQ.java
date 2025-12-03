@@ -21,7 +21,7 @@ public class PQ {
         pq.add(4);
         pq.add(1);
         pq.add(7);
-        //Add in Queue : 3 4 1 7
+        //Add in Queue : 3 4 1 7a
         while(!pq.isEmpty()){
             System.out.println(pq.peek()); //PEEK : O(1)
             pq.remove();  //REMOVE : O(log n)
