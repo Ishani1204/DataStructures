@@ -15,6 +15,7 @@ public class PQ {
         return this.rank-s2.rank;
        }
     }
+    
     public static void main(String[] args) {
         PriorityQueue<Integer> pq = new PriorityQueue<>();
         pq.add(3);  //ADD : O(log n)
