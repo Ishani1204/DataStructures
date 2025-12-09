@@ -13,7 +13,7 @@ public class Graph_1 {
         }
     }
 
-//Creae graph function
+//Create graph function
 static void createGraph(ArrayList<Edge> graph[]){
     for(int i=0; i<graph.length; i++){
         graph[i] = new ArrayList<>();
