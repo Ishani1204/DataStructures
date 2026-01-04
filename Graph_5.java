@@ -89,7 +89,7 @@ public static void krushkalsMST(ArrayList<Edge> edges, int V){
 }
 
 
-//Floof Fill algo - O(m*n)
+//Flood Fill algo - O(m*n)
 public void helper(int[][] image, int sr, int sc, int color, boolean vis[][], int orgCol){
     if(sr < 0 || sc < 0 || sr>= image.length || sc > image[0].length 
         || vis[sr][sc] || image[sr][sc] != orgCol){
