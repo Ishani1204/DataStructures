@@ -1,4 +1,5 @@
 import java.util.*;
+//Disjoint Set / Union-Find Set
 public class Graph_5{
     static int n = 7;
     static int par[] = new int[n];
