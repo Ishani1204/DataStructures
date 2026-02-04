@@ -1,5 +1,5 @@
 import java.util.*;
-public class HashMap2{
+public class Hash2{
     static class HashMap<K, V> {
 
         private Integer getOrDefault(int i, int i0) {
@@ -135,7 +135,7 @@ public class HashMap2{
             return n==0;
         }
     }
-
+    //Valid Anagram
     public static boolean isAnagram(String s, String t){
         HashMap<Character, Integer> map = new HashMap<>();
 
@@ -157,6 +157,22 @@ public class HashMap2{
         } 
     }
     return map.isEmpty();
+}
+
+//Itinerary for tickets - O(n)
+public static String getStart(HashMap<String, String> tickets){
+    HashMap<String, String> revMap = new HashMap<>();
+
+    for(String key : tickets.keySet()) {
+        revMap.put(tickets.get(key), key);
+    }
+
+    for(String key : tickets.keySet()){
+        if(!revMap.containsKey(key)){
+            return key; //starting point
+        }
+    }
+    return null;
 }
     public static void main(String args[]){
         HashMap<String, Integer> hm = new HashMap<>();
@@ -208,5 +224,114 @@ public class HashMap2{
 
         String s = "race";
         String t = "care";
+
+        //linked HashSet
+        HashSet<String> cities = new HashSet<>();
+        cities.add("Delhi");
+        cities.add("Mumbai");
+        cities.add("Noida");
+        cities.add("Bengaluru");
+
+        LinkedHashSet<String> lhs = new LinkedHashSet<>();
+        lhs.add("Delhi");
+        lhs.add("Mumbai");
+        lhs.add("Noida"); 
+
+        TreeSet<String> ts = new TreeSet<>();
+        ts.add("Delhi");
+        ts.add("Mumbai");
+        ts.add("Noida");
+
+    //Count distict elements - O(n)
+    int num[] = {4, 3, 2, 5, 6, 7, 3, 4, 2, 1};
+    HashSet<Integer> set = new HashSet<>();
+    for(int i=0; i<num.length; i++){
+        set.add(num[i]);
+        }
+
+        System.out.println("ans = " + set.size());
+
+    //Largest Subarray Sum 0 - O(n)
+    int Arr[] = {15, -2, 2, -8, 1, 7, 10, 23};
+    HashMap<Integer, Integer> Map = new HashMap<>();
+
+    //sum, idx
+    int sum = 0; 
+    int len = 0;
+
+    for(int j=0; j<Arr.length; j++){
+        sum += arr[j];
+        if(map.containsKey(sum)){
+            len = Math.max(len, j-map.get(sum)); //map.get(sum) = i basically in the hashmap
+        } else {
+            map.put(sum, j);
+            }
+        }
+        System.out.println("Largest subarray with sum as 0 => " + len);
+
+        //Subarray sum equal to K - O(n)
+        int Num[] = {10, 2, -2, -20, 10};
+        int k = -10;
+
+        HashMap<Integer, Integer> SA = new HashMap<>();
+        //sum, count
+        map.put(0, 1);
+
+        int Sum = 0;
+        int ans = 0;
+
+        for(int j=0; j<arr.length; j++){
+            Sum += arr[j];
+            if(map.containsKey(Sum-k)){
+                ans += map.get(Sum-k);
+            }
+            map.put(Sum, map.getOrDefault(Sum, 0)+1);
+        }
+
+        System.out.println(ans);
+
+    //Find itinerary for tickets
+    HashMap<String, String> tickets = new HashMap<>();
+    tickets.put("Chennai", "Bengaluru");
+    tickets.put("Mumbai", "Delhi");
+    tickets.put("Goa", "Chennai");
+    tickets.put("Delhi", "Goa");
+
+    String Start = getStart(tickets);
+    System.out.println(Start);
+    for(String key : tickets.keySet()){
+        System.out.println(" -> " + tickets.get(Start));
+        Start = tickets.get(Start);
+        }
+        System.out.println();
+
+    //Union and Intersection of sets - O(m+n)
+    int arr1[] = {7, 3, 9};
+    int arr2[] = {6, 3, 9, 2, 9, 4};
+    HashSet<Integer> Set = new HashSet<>();
+    //union
+        for(int i=0; i<arr1.length; i++){
+        set.add(arr1[i]);
+        }
+
+        for(int i=0; i<arr2.length; i++){
+            set.add(arr2[i]);
+        }
+    System.out.println("Union = " + set.size());
+
+    //Intersection
+    set.clear();
+        for(int i=0; i<arr1.length; i++){
+        set.add(arr1[i]);
+        }
+
+        int count = 0 ;
+        for(int i=0; i<arr2.length; i++){
+            if(set.contains(arr2[i])){
+                count++;
+                set.remove(arr2[i]);
+            }
+        }
+    System.out.println("Intersection = " + count);
     }
 }

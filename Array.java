@@ -65,11 +65,11 @@ public class Array {
       int maxSum=Integer.MIN_VALUE;
    
        for(int i=0;i<numbers.length;i++){
-           int start=i;
+           //int start=i;
          for(int j=i;j<numbers.length;j++){
-           int end=j;
+           //int end=j;
            CurrSum=0;
-           for(int k=start;k<=end;k++){
+           for(int k=i;k<=j;k++){
    
              CurrSum += numbers[k];
              
@@ -94,11 +94,11 @@ public class Array {
           prefix[i]=prefix[i-1]+numbers[i];
         }
         for(int i=0;i<numbers.length;i++){
-             int start=i;
+             //int start=i;
            for(int j=i;j<numbers.length;j++){
-             int end=j;
-             CurrSum= start==0 ? prefix[end] : prefix[end]-prefix[start-1];
-             
+             //int end=j;
+             CurrSum= i==0 ? prefix[j] : prefix[j]-prefix[i-1];
+        //means :  variable = if ki condition ? if ka print(statement 1) or (:) else ka print(statement 2)
              if(maxSum<CurrSum){
                  maxSum = CurrSum;
              }

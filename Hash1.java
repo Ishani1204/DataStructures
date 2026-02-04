@@ -1,5 +1,5 @@
 import java.util.*;
-public class HashMap1{
+public class Hash1{
     public static void main(String args[]){
         //HashMap creation
         HashMap <String, Integer> hm = new HashMap <>();
