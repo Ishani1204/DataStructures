@@ -135,12 +135,104 @@ public class Array {
   
       System.out.println("The maximum sum of the subarray is " + ms);
   }
+
+  //Trapping Rainwater - BRUTE FORCE O(n^2)
+    public static int TrappedRainwater (int height[]){
+      int n = height.length;
+      int ans = 0;
+
+      for(int i =0; i<=n; i++){
+        int left_max = height[i];
+        //find the maximaum of the left
+      for(int j = i-1; j>=0; j++){
+        left_max = Math.max(left_max, height[j]);
+      }
+
+      int right_max = height[i];
+
+       //find the maximum of the right
+       for(int j = i+1; j<n; j++){
+        right_max = Math.max(right_max, height[j]);
+       }
+
+       ans += Math.min(left_max, right_max) - height[i];
+    }
+
+    return ans;
+  }
   
+  //Trapping Rainwater BETTER APPROACH-O(n)
+  public static int Trappedrainwater(int height[]){
+    int n = height.length;
+    if (n == 0) {
+      return 0;
+  }
+
+
+  int[] left_max = new int[n];
+  left_max[0] = height[0];
+
+
+  // Fill left_max array
+  for (int i = 1; i < n; i++) {
+      left_max[i] = Math.max(left_max[i - 1], height[i]);
+  }
+
+
+  int[] right_max = new int[n];
+  right_max[n - 1] = height[n - 1];
+
+
+  // Fill right_max array
+  for (int j = n - 2; j >= 0; j--) {
+      right_max[j] = Math.max(right_max[j + 1], height[j]);
+  }
+
+
+  int ans = 0;
+
+
+  // Calculate trapped water
+  for (int i = 1; i < n - 1; i++) {
+      ans += Math.min(left_max[i], right_max[i]) - height[i];
+  }
+  return ans;
+  }
+
+  //Trapped Rainwater - OPTIMZED APPROACH -O(1)
+  public static int trappedrainwater(int height[]){
+    int n = height.length;
+      
+       int ans = 0;
+       int lmax = height[0];  // Maximum height on the left
+       int rmax = height[n - 1];  // Maximum height on the right
+       int low = 1;  // Pointer from the left
+       int high = n - 2;  // Pointer from the right
+
+
+       while (low <= high) {
+           lmax = Math.max(lmax, height[low]);
+           rmax = Math.max(rmax, height[high]);
+
+
+           if (lmax < rmax) {
+               ans += lmax - height[low];
+               low++;
+           } else {
+               ans += rmax - height[high];
+               high--;
+           }
+       }
+       return ans;
+  }
       
     public static void main(String args[]){
         Scanner sc = new Scanner(System.in);
         int numbers[]={1,-2,6,-1,3};
         maxSubarraySum1(numbers);
+
+        int height[] = {4, 2, 0, 3, 2, 5};
+        System.out.println(TrappedRainwater(height));
     } } 
     
 
